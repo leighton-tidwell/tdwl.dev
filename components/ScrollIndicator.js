@@ -1,14 +1,15 @@
-import { forwardRef } from 'react'
 import { Box } from 'theme-ui'
+import { scroller } from 'react-scroll'
 
-const scrollToRef = ref =>
-  window.scrollTo({
-    top: ref.current.offsetTop - 93,
-    behavior: 'smooth',
-  })
+const ScrollIndicator = () => {
+  const scroll = () => {
+    scroller.scrollTo('about', {
+      duration: 500,
+      smooth: true,
+      offset: -93,
+    })
+  }
 
-const ScrollIndicator = forwardRef((props, ref) => {
-  const scroll = () => scrollToRef(ref)
   return (
     <Box
       sx={{
@@ -88,8 +89,6 @@ const ScrollIndicator = forwardRef((props, ref) => {
       </Box>
     </Box>
   )
-})
-
-ScrollIndicator.displayName = 'ScrollIndicator'
+}
 
 export default ScrollIndicator

@@ -1,9 +1,17 @@
-import { forwardRef } from 'react'
 import Link from 'next/link'
 import { Flex, Box, Button } from 'theme-ui'
 import { ScrollIndicator } from '.'
+import { scroller } from 'react-scroll'
 
-const Hero = forwardRef((props, ref) => {
+const Hero = () => {
+  const scroll = () => {
+    scroller.scrollTo('work', {
+      duration: 500,
+      smooth: true,
+      offset: -93,
+    })
+  }
+
   return (
     <Flex
       sx={{
@@ -32,15 +40,13 @@ const Hero = forwardRef((props, ref) => {
         </b>{' '}
         to <b>your</b>
         <br /> business
-        <Link href="work" passHref>
-          <Box>
-            <Button variant="primary" mt={4}>
-              Our Work
-            </Button>
-          </Box>
-        </Link>
+        <Box onClick={scroll}>
+          <Button variant="primary" mt={4}>
+            Our Work
+          </Button>
+        </Box>
       </Box>
-      <ScrollIndicator ref={ref} />
+      <ScrollIndicator />
       <Box
         sx={{
           position: 'absolute',
@@ -66,8 +72,6 @@ const Hero = forwardRef((props, ref) => {
       />
     </Flex>
   )
-})
-
-Hero.displayName = 'Hero'
+}
 
 export default Hero

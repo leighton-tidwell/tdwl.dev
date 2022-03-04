@@ -1,5 +1,6 @@
 import { forwardRef } from 'react'
 import { Grid, Box, Heading, Paragraph } from 'theme-ui'
+import { Element } from 'react-scroll'
 
 const About = forwardRef((props, ref) => {
   return (
@@ -8,6 +9,11 @@ const About = forwardRef((props, ref) => {
       ref={ref}
       sx={{ height: 'calc(100vh - 93px)', overflowX: 'hidden' }}
     >
+      <Element
+        style={{ width: '0px', height: '0px' }}
+        id="about"
+        name="about"
+      />
       <Box p="1em">
         <Heading
           as="h1"

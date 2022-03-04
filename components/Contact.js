@@ -9,6 +9,7 @@ import {
   Textarea,
   Button,
 } from 'theme-ui'
+import { Element } from 'react-scroll'
 
 const Contact = () => {
   const [name, setName] = useState('')
@@ -109,7 +110,13 @@ const Contact = () => {
       }}
       as="form"
       onSubmit={handleSubmit}
+      id="contact"
     >
+      <Element
+        style={{ width: '0px', height: '0px' }}
+        id="contact"
+        name="contact"
+      />
       <Box p="1em">
         <Heading
           as="h1"

@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import { Grid, Box, Heading, Paragraph, Button } from 'theme-ui'
+import { Element } from 'react-scroll'
 
 const Work = () => {
   return (
     <Grid gap={1}>
+      <Element style={{ width: '0px', height: '0px' }} id="work" name="work" />
       <Box p="1em" sx={{ background: '#070707', color: 'white' }}>
         <Heading as="h1" sx={{ fontSize: '37px', fontFamily: 'heading' }}>
           Our Work
