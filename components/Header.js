@@ -21,7 +21,7 @@ const Header = () => {
       }}
     >
       <Box sx={{ height: '59px', width: '59px', cursor: 'pointer' }}>
-        <Link href="/">
+        <Link href="/" passHref>
           <Image src="/images/logo.png" alt="TDWL.DEV" width="59" height="59" />
         </Link>
       </Box>

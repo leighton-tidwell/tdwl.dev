@@ -90,4 +90,6 @@ const ScrollIndicator = forwardRef((props, ref) => {
   )
 })
 
+ScrollIndicator.displayName = 'ScrollIndicator'
+
 export default ScrollIndicator
