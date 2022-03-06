@@ -2,31 +2,52 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Flex, Box } from 'theme-ui'
-import { Navigation } from '.'
+import { Navigation, Logo } from '.'
+import { motion } from 'framer-motion'
 
-const Header = () => {
+const MotionFlex = motion(Flex)
+
+const Header = ({ color, toggleColor }) => {
   const [showNav, setShowNav] = useState(false)
+  const [headerPrevColor, setHeaderPrevColor] = useState('white')
 
   return (
-    <Flex
+    <MotionFlex
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       sx={{
         fontFamily: 'heading',
-        height: '93px',
+        height: '54px',
         p: '1em',
         position: 'fixed',
         top: 0,
         width: '100%',
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
         zIndex: '3',
       }}
     >
-      <Box sx={{ height: '59px', width: '59px', cursor: 'pointer' }}>
+      <Box sx={{ cursor: 'pointer' }}>
         <Link href="/" passHref>
-          <Image src="/images/logo.png" alt="TDWL.DEV" width="59" height="59" />
+          <Logo color={color} />
         </Link>
       </Box>
-      <Navigation show={showNav} toggle={() => setShowNav(!showNav)} />
-    </Flex>
+      <Navigation
+        headerColor={color}
+        show={showNav}
+        toggle={() => {
+          setShowNav(!showNav)
+          setHeaderPrevColor(color)
+          if (showNav === false) {
+            toggleColor('black')
+            console.log('toggling black')
+          } else {
+            console.log('other')
+            toggleColor(headerPrevColor)
+          }
+        }}
+      />
+    </MotionFlex>
   )
 }
 

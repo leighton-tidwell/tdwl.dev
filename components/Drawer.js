@@ -1,18 +1,18 @@
 import { useLayoutEffect, useEffect } from 'react'
-import { Flex, Box } from 'theme-ui'
-import Link from 'next/link'
+import { Flex, Box, Text } from 'theme-ui'
 import { scroller } from 'react-scroll'
+import { motion } from 'framer-motion'
 
-const Drawer = ({ show, toggle }) => {
+const MotionBox = motion(Box)
+
+const Drawer = ({ toggle }) => {
   const useIsomorphicLayoutEffect =
     typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
   useIsomorphicLayoutEffect(() => {
-    if (show) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'auto'
-    }
+    document.body.style.overflow = 'hidden'
+
+    return () => (document.body.style.overflow = 'auto')
   })
 
   const handleLink = id => {
@@ -21,13 +21,12 @@ const Drawer = ({ show, toggle }) => {
       scroller.scrollTo(id, {
         duration: 500,
         smooth: true,
-        offset: -93,
       })
   }
 
   const links = [
     {
-      href: '/',
+      id: 'home',
       label: 'Home',
     },
     {
@@ -35,61 +34,85 @@ const Drawer = ({ show, toggle }) => {
       label: 'About',
     },
     {
-      href: '/work',
-      label: 'Work',
+      id: 'projects',
+      label: 'Projects',
     },
     {
       id: 'contact',
-      label: 'Contact',
+      label: 'Contact Us',
     },
   ]
 
   return (
-    <Flex
+    <MotionBox
+      initial={{ opacity: 0, x: '100%' }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: '100%' }}
+      transition={{
+        duration: 0.3,
+      }}
       sx={{
-        flexDirection: 'column',
-        alignItems: 'center',
-        height: 'calc(100vh - 93px)',
+        height: '100vh',
+        background: 'white',
+        position: 'absolute',
         width: '100vw',
-        position: 'fixed',
-        top: '93px',
-        left: '0',
-        zIndex: '2',
-        backgroundColor: 'white',
-        transition: 'all 200ms ease',
-        transform: show ? 'translateX(0)' : 'translateX(200vw)',
-        p: '1em',
-        div: {
-          color: 'white',
-          textDecoration: 'none',
-          padding: '1em',
-          background: 'black',
-          margin: '1em',
-          width: '100%',
-          textAlign: 'center',
-          border: '3px solid white',
-          fontSize: '18px',
-          fontWeight: '600',
-          '&:active': {
-            color: 'black',
-            background: 'white',
-            border: '3px solid black',
-          },
-        },
+        top: 0,
+        left: 0,
+        zIndex: -1,
       }}
     >
-      {links.map(({ href, id, label }) =>
-        href ? (
-          <Link href={href} key={label} passHref>
-            <Box onClick={toggle}>{label}</Box>
-          </Link>
-        ) : (
-          <Box key={label} onClick={() => handleLink(id)}>
-            <a>{label}</a>
-          </Box>
-        ),
-      )}
-    </Flex>
+      <Flex
+        sx={{
+          height: 'calc(100vh - 54px)',
+          width: '100%',
+          alignItems: 'flex-end',
+          justifyContent: 'center',
+          flexDirection: 'column',
+        }}
+      >
+        {links.map(({ id, label }) => (
+          <MotionBox
+            key={id}
+            onClick={() => handleLink(id)}
+            sx={{
+              cursor: 'pointer',
+              p: '1em',
+              textTransform: 'uppercase',
+              fontSize: '48px',
+              fontWeight: '300',
+              color: 'black',
+              '&:active': {
+                fontWeight: '700',
+              },
+              span: {
+                position: 'relative',
+              },
+              'span:after': {
+                content: '""',
+                position: 'absolute',
+                width: '100%',
+                transform: 'scaleX(0)',
+                height: '2px',
+                bottom: '0',
+                left: '0',
+                background: 'black',
+                transformOrigin: 'bottom right',
+                transition: 'transform 0.25s ease-out',
+              },
+              'span:hover:after': {
+                transform: 'scaleX(1)',
+                transformOrigin: 'bottom left',
+              },
+              'span:active:after': {
+                transform: 'scaleX(0)',
+              },
+            }}
+          >
+            <Text>{label}</Text>
+          </MotionBox>
+        ))}
+      </Flex>
+    </MotionBox>
   )
 }
 

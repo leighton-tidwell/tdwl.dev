@@ -6,7 +6,6 @@ const ScrollIndicator = () => {
     scroller.scrollTo('about', {
       duration: 500,
       smooth: true,
-      offset: -93,
     })
   }
 

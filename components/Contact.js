@@ -1,24 +1,27 @@
-import { useState } from 'react'
-import {
-  Grid,
-  Box,
-  Heading,
-  Paragraph,
-  Input,
-  Label,
-  Textarea,
-  Button,
-} from 'theme-ui'
+import { useState, useRef, useEffect } from 'react'
+import { Box, Flex, Heading, Input, Text, Textarea, Button } from 'theme-ui'
 import { Element } from 'react-scroll'
+import { SocialIcon } from '.'
 
-const Contact = () => {
+const Contact = ({ toggleHeaderColor, scrollPosition }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
   const [inquiry, setInquiry] = useState('')
   const [errors, setErrors] = useState(null)
   const [showSuccess, setShowSuccess] = useState(false)
   const [showError, setShowError] = useState(false)
+
+  const ref = useRef()
+
+  useEffect(() => {
+    const { offsetTop } = ref.current
+    if (
+      scrollPosition >= offsetTop &&
+      scrollPosition <= offsetTop + ref.current.offsetHeight
+    ) {
+      toggleHeaderColor('black')
+    }
+  }, [scrollPosition, toggleHeaderColor])
 
   const handleValidation = () => {
     let tempErrors = {}
@@ -36,11 +39,6 @@ const Contact = () => {
       tempErrors['email'] = true
       isValid = false
     }
-
-    // if (phone.length <= 0) {
-    //   tempErrors['phone'] = true
-    //   isValid = false
-    // }
 
     if (inquiry.length <= 0) {
       tempErrors['inquiry'] = true
@@ -61,7 +59,6 @@ const Contact = () => {
         body: JSON.stringify({
           name,
           email,
-          phone,
           inquiry,
         }),
         headers: {
@@ -79,7 +76,6 @@ const Contact = () => {
       }
       setEmail('')
       setName('')
-      setPhone('')
       setInquiry('')
       setShowError(false)
       setShowSuccess(true)
@@ -94,118 +90,160 @@ const Contact = () => {
     setEmail(e.target.value)
   }
 
-  const handlePhoneChange = e => {
-    setPhone(e.target.value)
-  }
-
   const handleInquiryChange = e => {
     setInquiry(e.target.value)
   }
 
   return (
-    <Grid
+    <Box
       sx={{
-        background: '#070707',
-        color: 'white',
+        background: 'white',
+        color: 'black',
+        height: '100vh',
+        pt: '54px',
       }}
-      as="form"
-      onSubmit={handleSubmit}
       id="contact"
+      ref={ref}
     >
       <Element
         style={{ width: '0px', height: '0px' }}
         id="contact"
         name="contact"
       />
-      <Box p="1em">
-        <Heading
-          as="h1"
-          sx={{ fontSize: '37px', fontFamily: 'heading' }}
-          mb={2}
+      <Flex
+        p="1em"
+        sx={{
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexDirection: 'column',
+        }}
+      >
+        <Flex
+          sx={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            width: '100%',
+          }}
         >
-          Get in Touch
-        </Heading>
-        <Paragraph sx={{ fontSize: '18px' }}>
-          Whether you have a project in mind or just want to say hello, we would
-          love to hear from you.
-        </Paragraph>
-      </Box>
-      <Box p="1em">
-        <Label htmlFor="name">Name*</Label>
-        <Input
-          onChange={handleNameChange}
-          value={name}
-          name="name"
-          id="name"
-          type="text"
-        />
-        {errors?.name && (
-          <Paragraph sx={{ pt: '1em', color: 'red', fontSize: '18px' }}>
-            You must include a name.
-          </Paragraph>
-        )}
-      </Box>
-      <Box p="1em">
-        <Label htmlFor="email">Email*</Label>
-        <Input
-          onChange={handleEmailChange}
-          value={email}
-          name="email"
-          id="email"
-          type="email"
-        />
-        {errors?.email && (
-          <Paragraph sx={{ pt: '1em', color: 'red', fontSize: '18px' }}>
-            You must include an email.
-          </Paragraph>
-        )}
-      </Box>
-      <Box p="1em">
-        <Label htmlFor="phone">Phone Number</Label>
-        <Input
-          onChange={handlePhoneChange}
-          value={phone}
-          name="phone"
-          id="phone"
-          type="tel"
-        />
-        {errors?.phone && (
-          <Paragraph sx={{ pt: '1em', color: 'red', fontSize: '18px' }}>
-            You must have a valid phone number.
-          </Paragraph>
-        )}
-      </Box>
-      <Box p="1em">
-        <Label htmlFor="inquiry">Inquiry*</Label>
-        <Textarea
-          onChange={handleInquiryChange}
-          value={inquiry}
-          name="inquiry"
-          id="inquiry"
-          rows={8}
-        />
-        {errors?.inquiry && (
-          <Paragraph sx={{ pt: '1em', color: 'red', fontSize: '18px' }}>
-            You must include a message.
-          </Paragraph>
-        )}
-      </Box>
-      {showSuccess && (
-        <Paragraph sx={{ p: '1em', color: 'green', fontSize: '18px' }}>
-          We have recieved your message and will respond as soon as possible.
-        </Paragraph>
-      )}
-      {showError && (
-        <Paragraph sx={{ p: '1em', color: 'red', fontSize: '18px' }}>
-          There was an error sending your message. Please try again later.
-        </Paragraph>
-      )}
-      <Box p="1em">
-        <Button variant="secondary" sx={{ float: 'right' }}>
-          Send
-        </Button>
-      </Box>
-    </Grid>
+          <Heading as="h1" sx={{ fontSize: '36px', fontWeight: '300' }}>
+            Lets get in touch
+          </Heading>
+          <Flex
+            as="form"
+            onSubmit={handleSubmit}
+            sx={{
+              width: '60%',
+              flexDirection: 'column',
+              gap: '1.5em',
+              mt: '4em',
+              alignItems: 'center',
+            }}
+          >
+            <Input
+              autoComplete="off"
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={name}
+              onChange={handleNameChange}
+              sx={{
+                borderBottom: errors?.name
+                  ? '1px solid red'
+                  : '1px solid black',
+              }}
+            />
+            <Input
+              autoComplete="off"
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={email}
+              onChange={handleEmailChange}
+              sx={{
+                borderBottom: errors?.email
+                  ? '1px solid red'
+                  : '1px solid black',
+              }}
+            />
+            <Textarea
+              autoComplete="off"
+              name="inquiry"
+              placeholder="Message"
+              rows={1}
+              value={inquiry}
+              onChange={handleInquiryChange}
+              sx={{
+                borderBottom: errors?.inquiry
+                  ? '1px solid red'
+                  : '1px solid black',
+              }}
+            />
+            {showSuccess ? (
+              <Text
+                sx={{
+                  fontSize: '18px',
+                  fontWeight: '400',
+                  fontFamily: 'heading',
+                  textAlign: 'center',
+                }}
+              >
+                We have recieved your message and will write back soon
+              </Text>
+            ) : (
+              <Button variant="primary" sx={{ width: '100%', mt: '1em' }}>
+                SEND
+              </Button>
+            )}
+          </Flex>
+        </Flex>
+        <Flex
+          sx={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            gap: '1em',
+            mt: '25%',
+          }}
+        >
+          <Heading as="h1" sx={{ fontSize: '36px', fontWeight: '300' }}>
+            Connect with us
+          </Heading>
+          <Text
+            as="p"
+            sx={{ fontSize: '18px', fontWeight: '600', fontFamily: 'heading' }}
+          >
+            (210) 646-4376
+          </Text>
+          <Text
+            as="p"
+            sx={{ fontSize: '18px', fontWeight: '600', fontFamily: 'heading' }}
+          >
+            general@tdwl.dev
+          </Text>
+          <Flex sx={{ gap: '1em' }}>
+            <Box
+              sx={{
+                'svg:hover': {
+                  fill: '#3b5998',
+                },
+              }}
+            >
+              <SocialIcon name="facebook" />
+            </Box>
+            <Box
+              sx={{
+                'svg:hover': {
+                  fill: '#1DA1F2',
+                },
+              }}
+            >
+              <SocialIcon name="twitter" />
+            </Box>
+          </Flex>
+        </Flex>
+      </Flex>
+    </Box>
   )
 }
 

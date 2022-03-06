@@ -8,7 +8,7 @@ export default async function sendEmail(req, res) {
       to: 'general@tdwl.dev',
       from: 'no-reply@tdwl.dev',
       subject: 'Contact Form Submission',
-      text: `${req.body.name} (${req.body.email} - ${req.body.phone}) says: ${req.body.inquiry}`,
+      text: `${req.body.name} (${req.body.email}) says: ${req.body.inquiry}`,
     })
   } catch (error) {
     return res.status(error.statusCode || 500).json({ error: error.message })
