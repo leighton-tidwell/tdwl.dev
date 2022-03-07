@@ -12,6 +12,7 @@ const Header = ({ color, toggleColor }) => {
 
   const handleToTop = () => {
     scroller.scrollTo('home', {
+      containerId: 'container',
       duration: 500,
       smooth: true,
     })

@@ -19,6 +19,7 @@ const Drawer = ({ toggle }) => {
     toggle()
     if (id)
       scroller.scrollTo(id, {
+        containerId: 'container',
         duration: 500,
         smooth: true,
       })

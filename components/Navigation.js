@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Flex, Grid, Box } from 'theme-ui'
 import { Drawer } from '.'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -48,12 +49,28 @@ const bottomVariants = {
 }
 
 const Navigation = ({ show, toggle, headerColor }) => {
+  const [scrollBarVisible, setScrollBarVisible] = useState('')
+
+  useEffect(() => {
+    const container = document.querySelector('#container')
+
+    const detectScrollbar =
+      container?.clientWidth < window.innerWidth ? '1em' : ''
+    setScrollBarVisible(detectScrollbar)
+  }, [])
+
   return (
     <>
       <AnimatePresence>
         {show && <Drawer show={show} toggle={toggle} />}
       </AnimatePresence>
-      <Flex sx={{ flex: '1 1 auto', justifyContent: 'flex-end' }}>
+      <Flex
+        sx={{
+          flex: '1 1 auto',
+          justifyContent: 'flex-end',
+          pr: scrollBarVisible,
+        }}
+      >
         <Grid
           sx={{ height: '25px', cursor: 'pointer' }}
           gap={0}

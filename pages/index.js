@@ -10,6 +10,7 @@ import {
   Contact,
   Footer,
 } from '../components/'
+import { Box } from 'theme-ui'
 
 const Home = () => {
   const [showSplash, setShowSplash] = useState(true)
@@ -26,17 +27,10 @@ const Home = () => {
     }
   }, [])
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const position = window.pageYOffset
-      setScrollPosition(position)
-    }
-    window.addEventListener('scroll', handleScroll)
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+  const handleScroll = e => {
+    const position = e.target.scrollTop
+    setScrollPosition(position)
+  }
 
   return (
     <>
@@ -45,7 +39,16 @@ const Home = () => {
         {showSplash ? (
           <SplashScreen />
         ) : (
-          <>
+          <Box
+            id="container"
+            onScroll={handleScroll}
+            sx={{
+              scrollSnapType: 'y proximity',
+              scrollBehavior: 'smooth',
+              height: '100vh',
+              overflow: 'auto',
+            }}
+          >
             <Header color={headerColor} toggleColor={setHeaderColor} />
             <Hero
               scrollPosition={scrollPosition}
@@ -64,7 +67,7 @@ const Home = () => {
               toggleHeaderColor={setHeaderColor}
             />
             <Footer />
-          </>
+          </Box>
         )}
       </AnimatePresence>
     </>

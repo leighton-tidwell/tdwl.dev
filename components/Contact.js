@@ -126,7 +126,8 @@ const Contact = ({ toggleHeaderColor, scrollPosition }) => {
           pt: '54px',
           position: 'relative',
           overflow: 'hidden',
-          p: '3em 0',
+          p: ['3em 0', '3em 0', '10em 0'],
+          scrollSnapAlign: 'center',
           '&:after': {
             content: '""',
             position: 'absolute',
@@ -149,7 +150,7 @@ const Contact = ({ toggleHeaderColor, scrollPosition }) => {
           sx={{
             alignItems: 'center',
             justifyContent: 'center',
-            flexDirection: 'column',
+            flexDirection: ['column', 'column', 'row'],
           }}
         >
           <Flex
@@ -157,10 +158,23 @@ const Contact = ({ toggleHeaderColor, scrollPosition }) => {
               alignItems: 'center',
               justifyContent: 'center',
               flexDirection: 'column',
-              width: '100%',
+              flexGrow: '1',
+              position: 'relative',
+              width: ['100%', '100%', '50%'],
+              '&:after': {
+                content: ['none', 'none', '""'],
+                position: 'absolute',
+                right: '0',
+                height: '150%',
+                width: '1px',
+                background: '#141414',
+              },
             }}
           >
-            <Heading as="h1" sx={{ fontSize: '36px', fontWeight: '300' }}>
+            <Heading
+              as="h1"
+              sx={{ fontSize: ['36px', '36px', '45px'], fontWeight: '300' }}
+            >
               Lets get in touch
             </Heading>
             <Flex
@@ -287,11 +301,16 @@ const Contact = ({ toggleHeaderColor, scrollPosition }) => {
               alignItems: 'center',
               justifyContent: 'center',
               flexDirection: 'column',
+              flexGrow: '1',
               gap: '1em',
-              mt: '25%',
+              width: ['100%', '100%', '50%'],
+              mt: ['25%', '25%', '0'],
             }}
           >
-            <Heading as="h1" sx={{ fontSize: '36px', fontWeight: '300' }}>
+            <Heading
+              as="h1"
+              sx={{ fontSize: ['36px', '36px', '45px'], fontWeight: '300' }}
+            >
               Connect with us
             </Heading>
             <Text

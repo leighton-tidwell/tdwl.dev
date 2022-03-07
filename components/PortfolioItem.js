@@ -16,7 +16,6 @@ const variants = {
   visible: {
     filter: 'grayscale(0%)',
     opacity: 1,
-    y: 0,
     transition: {
       duration: 1,
     },
@@ -24,7 +23,7 @@ const variants = {
 }
 
 const PortfolioItem = ({ src, alt, sx }) => {
-  const { ref, inView } = useInView({ threshold: 1 })
+  const { ref, inView } = useInView({ threshold: 0.9 })
   const controls = useAnimation()
 
   useEffect(() => {
@@ -39,14 +38,28 @@ const PortfolioItem = ({ src, alt, sx }) => {
 
   return (
     <MotionBox
+      class="portfolio-item"
       sx={{
-        p: '1em',
+        scrollSnapAlign: 'center',
+        margin: '0 auto',
         aspectRatio: '16/9',
+        height: '100vh',
+        width: '100vw',
+        span: {
+          height: '100% !important',
+          width: '100% !important',
+          position: 'relative !important',
+        },
+        'span img': {
+          height: '100% !important',
+          width: '100% !important',
+          position: 'relative !important',
+        },
         ...sx,
       }}
       animate={controls}
       variants={variants}
-      initial={{ opacity: 0, y: '100%' }}
+      initial={{ filter: 'grayscale(100%)' }}
       ref={ref}
     >
       <Image src={src} alt={alt} layout="fill" />

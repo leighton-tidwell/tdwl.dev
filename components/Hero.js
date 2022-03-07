@@ -1,8 +1,8 @@
 import { useRef, useEffect } from 'react'
-import { Flex, Box, Heading, Grid, Text } from 'theme-ui'
+import { Flex, Box, Heading, Grid, Text, Button } from 'theme-ui'
 import { ScrollIndicator, Browser } from '.'
 import { motion } from 'framer-motion'
-import { Element } from 'react-scroll'
+import { Element, scroller } from 'react-scroll'
 
 const MotionBox = motion(Box)
 const MotionGrid = motion(Grid)
@@ -11,6 +11,14 @@ const MotionHeading = motion(Heading)
 
 const Hero = ({ toggleHeaderColor, scrollPosition }) => {
   const ref = useRef()
+
+  const handleGoToWork = () => {
+    scroller.scrollTo('projects', {
+      containerId: 'container',
+      duration: 500,
+      smooth: true,
+    })
+  }
 
   useEffect(() => {
     const { offsetTop } = ref.current
@@ -44,15 +52,22 @@ const Hero = ({ toggleHeaderColor, scrollPosition }) => {
           exit={{ opacity: 0 }}
           p="1em"
           sx={{ width: '100%' }}
-          gap="4em"
+          columns={[1, 1, 2]}
         >
-          <Box>
+          <Box
+            sx={{
+              justifyContent: ['', '', 'center'],
+              mb: ['2em', '1em', '0'],
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
             <MotionHeading
               sx={{
-                lineHeight: '50px',
+                lineHeight: ['50px', '50px', '50px', '60px'],
                 mb: '14px',
                 fontWeight: '400',
-                fontSize: '41px',
+                fontSize: ['35px', '41px', '50px', '60px'],
               }}
             >
               <MotionText
@@ -104,6 +119,31 @@ const Hero = ({ toggleHeaderColor, scrollPosition }) => {
             >
               Web Development, design and deployment
             </MotionText>
+            <Button
+              onClick={handleGoToWork}
+              sx={{
+                display: ['none', 'none', 'flex'],
+                mt: '2em',
+
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+              variant="secondary"
+            >
+              View our work{' '}
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21.3467 14.2703H5.33337V16.8649H21.3467V20.7568L26.6667 15.5676L21.3467 10.3784V14.2703Z"
+                  fill="white"
+                />
+              </svg>
+            </Button>
           </Box>
           <MotionBox
             initial={{ transform: 'translateY(200%)' }}

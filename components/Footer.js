@@ -4,6 +4,7 @@ import { scroller } from 'react-scroll'
 const Footer = () => {
   const handleToTop = () => {
     scroller.scrollTo('home', {
+      containerId: 'container',
       duration: 500,
       smooth: true,
     })

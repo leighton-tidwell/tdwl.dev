@@ -4,7 +4,8 @@ import { scroller } from 'react-scroll'
 const ScrollIndicator = () => {
   const scroll = () => {
     scroller.scrollTo('about', {
-      duration: 500,
+      containerId: 'container',
+      duration: 1000,
       smooth: true,
     })
   }

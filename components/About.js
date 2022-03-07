@@ -1,5 +1,5 @@
-import { useRef, useEffect, useCallback } from 'react'
-import { Grid, Box, Heading, Paragraph } from 'theme-ui'
+import { useRef, useEffect } from 'react'
+import { Grid, Box } from 'theme-ui'
 import { Element } from 'react-scroll'
 import { AboutContent } from '.'
 
@@ -17,7 +17,7 @@ const About = ({ toggleHeaderColor, scrollPosition }) => {
   }, [scrollPosition, toggleHeaderColor])
 
   return (
-    <>
+    <Box sx={{ scrollSnapAlign: 'center' }}>
       <Element
         style={{ width: '0px', height: '0px' }}
         id="about"
@@ -29,8 +29,9 @@ const About = ({ toggleHeaderColor, scrollPosition }) => {
           minHeight: '100vh',
           overflow: 'hidden',
           position: 'relative',
-          p: '3em 0',
+          p: ['3em 0', '3em 0', '10em 0'],
         }}
+        columns={[1, 1, 2]}
       >
         <AboutContent title="Experienced">
           We have <b>over a decade</b> of experience helping small businesses
@@ -65,7 +66,7 @@ const About = ({ toggleHeaderColor, scrollPosition }) => {
         }}
       /> */}
       </Grid>
-    </>
+    </Box>
   )
 }
 
