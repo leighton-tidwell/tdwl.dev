@@ -121,10 +121,23 @@ const Contact = ({ toggleHeaderColor, scrollPosition }) => {
         sx={{
           background: 'white',
           color: 'black',
-          height: '100vh',
+          minHeight: '100vh',
           pt: '54px',
           position: 'relative',
           overflow: 'hidden',
+          p: '3em 0',
+          '&:after': {
+            content: '""',
+            position: 'absolute',
+            width: '0',
+            height: '0',
+            borderLeft: '0 solid transparent',
+            borderRight: '300vw solid transparent',
+            borderBottom: '40vh solid #141414',
+            bottom: '-100px',
+            left: '49%',
+            transform: 'translateX(-50%)',
+          },
         }}
         id="contact"
         ref={ref}
@@ -330,6 +343,9 @@ const Contact = ({ toggleHeaderColor, scrollPosition }) => {
                     'svg:hover': {
                       fill: '#1DA1F2',
                     },
+                    'svg:active': {
+                      fill: '#1DA1F2',
+                    },
                   }}
                 >
                   <SocialIcon name="twitter" />
@@ -338,15 +354,6 @@ const Contact = ({ toggleHeaderColor, scrollPosition }) => {
             </Flex>
           </Flex>
         </Flex>
-        <Box
-          sx={{
-            width: '1000px',
-            height: '500px',
-            background: '#141414',
-            position: 'absolute',
-            transform: 'rotate(30deg) translate(-40%, 40%)',
-          }}
-        />
       </Box>
     </>
   )

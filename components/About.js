@@ -26,7 +26,7 @@ const About = ({ toggleHeaderColor, scrollPosition }) => {
       <Grid
         ref={ref}
         sx={{
-          height: '100vh',
+          minHeight: '100vh',
           overflow: 'hidden',
           position: 'relative',
           p: '3em 0',
