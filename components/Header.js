@@ -1,15 +1,21 @@
 import { useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Flex, Box } from 'theme-ui'
+import { Flex, Box, Link } from 'theme-ui'
 import { Navigation, Logo } from '.'
 import { motion } from 'framer-motion'
+import { scroller } from 'react-scroll'
 
 const MotionFlex = motion(Flex)
 
 const Header = ({ color, toggleColor }) => {
   const [showNav, setShowNav] = useState(false)
   const [headerPrevColor, setHeaderPrevColor] = useState('white')
+
+  const handleToTop = () => {
+    scroller.scrollTo('home', {
+      duration: 500,
+      smooth: true,
+    })
+  }
 
   return (
     <MotionFlex
@@ -24,11 +30,11 @@ const Header = ({ color, toggleColor }) => {
         top: 0,
         width: '100%',
         backgroundColor: 'transparent',
-        zIndex: '3',
+        zIndex: '10',
       }}
     >
       <Box sx={{ cursor: 'pointer' }}>
-        <Link href="/" passHref>
+        <Link onClick={handleToTop}>
           <Logo color={color} />
         </Link>
       </Box>

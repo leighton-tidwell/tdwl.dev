@@ -8,6 +8,7 @@ import {
   About,
   Projects,
   Contact,
+  Footer,
 } from '../components/'
 
 const Home = () => {
@@ -62,6 +63,7 @@ const Home = () => {
               scrollPosition={scrollPosition}
               toggleHeaderColor={setHeaderColor}
             />
+            <Footer />
           </>
         )}
       </AnimatePresence>

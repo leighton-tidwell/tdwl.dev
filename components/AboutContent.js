@@ -28,7 +28,6 @@ const AboutContent = ({ title = 'About', sx, children, invert }) => {
 
   useEffect(() => {
     if (inView) {
-      console.log('hello')
       controls.start('visible')
     }
   }, [controls, inView])

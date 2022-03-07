@@ -17,7 +17,15 @@ const Projects = ({ toggleHeaderColor, scrollPosition }) => {
   }, [scrollPosition, toggleHeaderColor])
 
   return (
-    <Box ref={ref} sx={{ background: '#141414', color: 'white', pb: '3em' }}>
+    <Box
+      ref={ref}
+      sx={{
+        background: '#141414',
+        color: 'white',
+        p: '3em 0',
+        position: 'relative',
+      }}
+    >
       <Element
         style={{ width: '0px', height: '0px' }}
         id="projects"
@@ -29,8 +37,7 @@ const Projects = ({ toggleHeaderColor, scrollPosition }) => {
           fontSize: '36px',
           fontWeight: '700',
           p: '1rem',
-          pt: '4rem',
-          pb: '4rem',
+          mb: '8px',
         }}
       >
         Projects

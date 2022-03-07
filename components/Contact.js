@@ -1,5 +1,15 @@
 import { useState, useRef, useEffect } from 'react'
-import { Box, Flex, Heading, Input, Text, Textarea, Button } from 'theme-ui'
+import {
+  Box,
+  Flex,
+  Heading,
+  Input,
+  Text,
+  Textarea,
+  Button,
+  Label,
+  Link,
+} from 'theme-ui'
 import { Element } from 'react-scroll'
 import { SocialIcon } from '.'
 
@@ -10,6 +20,7 @@ const Contact = ({ toggleHeaderColor, scrollPosition }) => {
   const [errors, setErrors] = useState(null)
   const [showSuccess, setShowSuccess] = useState(false)
   const [showError, setShowError] = useState(false)
+  const [textAreaRows, setTextAreaRows] = useState(1)
 
   const ref = useRef()
 
@@ -84,166 +95,260 @@ const Contact = ({ toggleHeaderColor, scrollPosition }) => {
 
   const handleNameChange = e => {
     setName(e.target.value)
+    setErrors({ ...errors, name: false })
   }
 
   const handleEmailChange = e => {
     setEmail(e.target.value)
+    setErrors({ ...errors, email: false })
   }
 
   const handleInquiryChange = e => {
-    setInquiry(e.target.value)
+    const { value } = e.target
+    setErrors({ ...errors, inquiry: false })
+    setTextAreaRows(Math.ceil(value.length / 40) || 1)
+    setInquiry(value)
   }
 
   return (
-    <Box
-      sx={{
-        background: 'white',
-        color: 'black',
-        height: '100vh',
-        pt: '54px',
-      }}
-      id="contact"
-      ref={ref}
-    >
+    <>
       <Element
         style={{ width: '0px', height: '0px' }}
         id="contact"
         name="contact"
       />
-      <Flex
-        p="1em"
+      <Box
         sx={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
+          background: 'white',
+          color: 'black',
+          height: '100vh',
+          pt: '54px',
+          position: 'relative',
+          overflow: 'hidden',
         }}
+        id="contact"
+        ref={ref}
       >
         <Flex
+          p="1em"
           sx={{
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'column',
-            width: '100%',
           }}
         >
-          <Heading as="h1" sx={{ fontSize: '36px', fontWeight: '300' }}>
-            Lets get in touch
-          </Heading>
           <Flex
-            as="form"
-            onSubmit={handleSubmit}
             sx={{
-              width: '60%',
-              flexDirection: 'column',
-              gap: '1.5em',
-              mt: '4em',
               alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              width: '100%',
             }}
           >
-            <Input
-              autoComplete="off"
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={name}
-              onChange={handleNameChange}
+            <Heading as="h1" sx={{ fontSize: '36px', fontWeight: '300' }}>
+              Lets get in touch
+            </Heading>
+            <Flex
+              as="form"
+              onSubmit={handleSubmit}
               sx={{
-                borderBottom: errors?.name
-                  ? '1px solid red'
-                  : '1px solid black',
+                width: '60%',
+                flexDirection: 'column',
+                gap: '1.5em',
+                mt: '4em',
+                alignItems: 'center',
               }}
-            />
-            <Input
-              autoComplete="off"
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={email}
-              onChange={handleEmailChange}
-              sx={{
-                borderBottom: errors?.email
-                  ? '1px solid red'
-                  : '1px solid black',
-              }}
-            />
-            <Textarea
-              autoComplete="off"
-              name="inquiry"
-              placeholder="Message"
-              rows={1}
-              value={inquiry}
-              onChange={handleInquiryChange}
-              sx={{
-                borderBottom: errors?.inquiry
-                  ? '1px solid red'
-                  : '1px solid black',
-              }}
-            />
-            {showSuccess ? (
-              <Text
+            >
+              <Box
                 sx={{
-                  fontSize: '18px',
-                  fontWeight: '400',
-                  fontFamily: 'heading',
-                  textAlign: 'center',
+                  width: '100%',
+                  position: 'relative',
+                  label: {
+                    color: errors?.name ? 'red' : '',
+                  },
+                  '& input:focus + label': {
+                    transform: 'scale(0.8) translateY(-1.5em)',
+                  },
+                  '& input:not([value=""]) + label': {
+                    transform: 'scale(0.8) translateY(-1.5em)',
+                  },
                 }}
               >
-                We have recieved your message and will write back soon
-              </Text>
-            ) : (
-              <Button variant="primary" sx={{ width: '100%', mt: '1em' }}>
-                SEND
-              </Button>
-            )}
+                <Input
+                  autoComplete="off"
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={name}
+                  onChange={handleNameChange}
+                  sx={{
+                    borderBottom: errors?.name
+                      ? '1px solid red'
+                      : '1px solid black',
+                  }}
+                />
+                <Label htmlFor="name">Name</Label>
+              </Box>
+              <Box
+                sx={{
+                  width: '100%',
+                  position: 'relative',
+                  label: {
+                    color: errors?.email ? 'red' : '',
+                  },
+                  '& input:focus + label': {
+                    transform: 'scale(0.8) translateY(-1.5em)',
+                  },
+                  '& input:not([value=""]) + label': {
+                    transform: 'scale(0.8) translateY(-1.5em)',
+                  },
+                }}
+              >
+                <Input
+                  autoComplete="off"
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  sx={{
+                    borderBottom: errors?.email
+                      ? '1px solid red'
+                      : '1px solid black',
+                  }}
+                />
+                <Label htmlFor="email">Email</Label>
+              </Box>
+              <Box
+                sx={{
+                  position: 'relative',
+                  width: '100%',
+                  label: {
+                    color: errors?.inquiry ? 'red' : '',
+                    transform: inquiry.length
+                      ? 'scale(0.8) translateY(-1.5em)'
+                      : '',
+                  },
+                  '& textarea:focus + label': {
+                    transform: 'scale(0.8) translateY(-1.5em)',
+                  },
+                }}
+              >
+                <Textarea
+                  autoComplete="off"
+                  name="inquiry"
+                  id="inquiry"
+                  rows={textAreaRows}
+                  value={inquiry}
+                  onChange={handleInquiryChange}
+                  sx={{
+                    borderBottom: errors?.inquiry
+                      ? '1px solid red'
+                      : '1px solid black',
+                  }}
+                />
+                <Label htmlFor="inquiry">Message</Label>
+              </Box>
+              {showSuccess ? (
+                <Text
+                  sx={{
+                    fontSize: '18px',
+                    fontWeight: '400',
+                    fontFamily: 'heading',
+                    textAlign: 'center',
+                  }}
+                >
+                  We have recieved your message and will write back soon
+                </Text>
+              ) : (
+                <Button variant="primary" sx={{ width: '100%', mt: '1em' }}>
+                  SEND
+                </Button>
+              )}
+            </Flex>
+          </Flex>
+          <Flex
+            sx={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'column',
+              gap: '1em',
+              mt: '25%',
+            }}
+          >
+            <Heading as="h1" sx={{ fontSize: '36px', fontWeight: '300' }}>
+              Connect with us
+            </Heading>
+            <Text
+              as="p"
+              sx={{
+                fontSize: '18px',
+                fontWeight: '600',
+                fontFamily: 'heading',
+              }}
+            >
+              <Link
+                sx={{ textDecoration: 'none', color: 'black' }}
+                href="tel:+1210-646-4376"
+              >
+                (210) 646-4376
+              </Link>
+            </Text>
+            <Text
+              as="p"
+              sx={{
+                fontSize: '18px',
+                fontWeight: '600',
+                fontFamily: 'heading',
+              }}
+            >
+              <Link
+                sx={{ textDecoration: 'none', color: 'black' }}
+                href="mailto:general@tdwl.dev"
+              >
+                general@tdwl.dev
+              </Link>
+            </Text>
+            <Flex sx={{ gap: '1em' }}>
+              <Link
+                href="https://www.facebook.com/TDWLDevelopment"
+                target="_blank"
+              >
+                <Box
+                  sx={{
+                    'svg:hover': {
+                      fill: '#3b5998',
+                    },
+                  }}
+                >
+                  <SocialIcon name="facebook" />
+                </Box>
+              </Link>
+              <Link href="https://twitter.com/TDWLDevelopment" target="_blank">
+                <Box
+                  sx={{
+                    'svg:hover': {
+                      fill: '#1DA1F2',
+                    },
+                  }}
+                >
+                  <SocialIcon name="twitter" />
+                </Box>
+              </Link>
+            </Flex>
           </Flex>
         </Flex>
-        <Flex
+        <Box
           sx={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            gap: '1em',
-            mt: '25%',
+            width: '1000px',
+            height: '500px',
+            background: '#141414',
+            position: 'absolute',
+            transform: 'rotate(30deg) translate(-40%, 40%)',
           }}
-        >
-          <Heading as="h1" sx={{ fontSize: '36px', fontWeight: '300' }}>
-            Connect with us
-          </Heading>
-          <Text
-            as="p"
-            sx={{ fontSize: '18px', fontWeight: '600', fontFamily: 'heading' }}
-          >
-            (210) 646-4376
-          </Text>
-          <Text
-            as="p"
-            sx={{ fontSize: '18px', fontWeight: '600', fontFamily: 'heading' }}
-          >
-            general@tdwl.dev
-          </Text>
-          <Flex sx={{ gap: '1em' }}>
-            <Box
-              sx={{
-                'svg:hover': {
-                  fill: '#3b5998',
-                },
-              }}
-            >
-              <SocialIcon name="facebook" />
-            </Box>
-            <Box
-              sx={{
-                'svg:hover': {
-                  fill: '#1DA1F2',
-                },
-              }}
-            >
-              <SocialIcon name="twitter" />
-            </Box>
-          </Flex>
-        </Flex>
-      </Flex>
-    </Box>
+        />
+      </Box>
+    </>
   )
 }
 

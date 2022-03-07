@@ -17,36 +17,43 @@ const About = ({ toggleHeaderColor, scrollPosition }) => {
   }, [scrollPosition, toggleHeaderColor])
 
   return (
-    <Grid
-      ref={ref}
-      sx={{ height: '100vh', overflow: 'hidden', position: 'relative' }}
-    >
+    <>
       <Element
         style={{ width: '0px', height: '0px' }}
         id="about"
         name="about"
       />
-      <AboutContent title="Experienced">
-        We have <b>over a decade</b> of experience helping small businesses
-        create web solutions that drive customer interaction, improve
-        functionality and <b>just work</b>.
-      </AboutContent>
-      <AboutContent title="Technologies">
-        We specialize in <b>Javascript development</b> (ReactJS, Next.js, VueJS,
-        Node.js, etc.) but have experience in many different technologies and
-        can comfortably do <b>any tasks on the front end and back end</b>.
-      </AboutContent>
-      <AboutContent title="Process">
-        Our team will remain in <b>constant contact</b> every step of the way
-        when you work with us, the end result will be crafted with{' '}
-        <b>any changes</b> you request along the way.
-      </AboutContent>
-      <AboutContent title="Origin" invert>
-        TDWL Development is a veteran owned and founded company based in San
-        Antonio, Texas. We have done business with{' '}
-        <b>many clients throughout the years</b>.
-      </AboutContent>
-      {/* <Box
+      <Grid
+        ref={ref}
+        sx={{
+          height: '100vh',
+          overflow: 'hidden',
+          position: 'relative',
+          p: '3em 0',
+        }}
+      >
+        <AboutContent title="Experienced">
+          We have <b>over a decade</b> of experience helping small businesses
+          create web solutions that drive customer interaction, improve
+          functionality and <b>just work</b>.
+        </AboutContent>
+        <AboutContent title="Technologies">
+          We specialize in <b>Javascript development</b> (ReactJS, Next.js,
+          VueJS, Node.js, etc.) but have experience in many different
+          technologies and can comfortably do{' '}
+          <b>any tasks on the front end and back end</b>.
+        </AboutContent>
+        <AboutContent title="Process">
+          Our team will remain in <b>constant contact</b> every step of the way
+          when you work with us, the end result will be crafted with{' '}
+          <b>any changes</b> you request along the way.
+        </AboutContent>
+        <AboutContent title="Origin">
+          TDWL Development is a veteran owned and founded company based in San
+          Antonio, Texas. We have done business with{' '}
+          <b>many clients throughout the years</b>.
+        </AboutContent>
+        {/* <Box
         sx={{
           position: 'absolute',
           bottom: '0',
@@ -57,7 +64,8 @@ const About = ({ toggleHeaderColor, scrollPosition }) => {
           zIndex: '-1',
         }}
       /> */}
-    </Grid>
+      </Grid>
+    </>
   )
 }
 
