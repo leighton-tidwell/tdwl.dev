@@ -37,16 +37,17 @@ const Contact = ({ toggleHeaderColor, scrollPosition }) => {
   const handleValidation = () => {
     let tempErrors = {}
     let isValid = true
+    const emailFormat =
+      /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
     if (name.length <= 0) {
       tempErrors['name'] = true
       isValid = false
     }
 
-    if (
-      email.length <= 0 ||
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) === false
-    ) {
+    console.log(email, email.match(emailFormat))
+
+    if (email.length <= 0 || email.match(emailFormat) === null) {
       tempErrors['email'] = true
       isValid = false
     }
