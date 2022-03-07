@@ -137,6 +137,7 @@ const Contact = ({ toggleHeaderColor, scrollPosition }) => {
             bottom: '-100px',
             left: '49%',
             transform: 'translateX(-50%)',
+            pointerEvents: 'none',
           },
         }}
         id="contact"
@@ -330,6 +331,9 @@ const Contact = ({ toggleHeaderColor, scrollPosition }) => {
                 <Box
                   sx={{
                     'svg:hover': {
+                      fill: '#3b5998',
+                    },
+                    'svg:active': {
                       fill: '#3b5998',
                     },
                   }}
