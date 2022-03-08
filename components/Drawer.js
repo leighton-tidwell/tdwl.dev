@@ -23,7 +23,7 @@ const Drawer = ({ toggle }) => {
         smooth: true,
       })
 
-    toggle()
+    setTimeout(() => toggle(), 1000)
   }
 
   const links = [
