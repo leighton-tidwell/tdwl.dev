@@ -70,17 +70,8 @@ const PortfolioItem = ({
         margin: '0 auto',
         aspectRatio: '16/9',
         height: '100vh',
+        position: 'relative',
         width: '100%',
-        span: {
-          height: '100% !important',
-          width: '100% !important',
-          position: 'relative !important',
-        },
-        'span img': {
-          height: '100% !important',
-          width: '100% !important',
-          position: 'relative !important',
-        },
         ...sx,
       }}
       animate={controls}
