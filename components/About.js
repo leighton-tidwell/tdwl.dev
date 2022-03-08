@@ -17,7 +17,7 @@ const About = ({ toggleHeaderColor, scrollPosition }) => {
   }, [scrollPosition, toggleHeaderColor])
 
   return (
-    <Box sx={{ scrollSnapAlign: 'center' }}>
+    <Box sx={{ scrollSnapAlign: 'center', scrollSnapStop: 'always' }}>
       <Element
         style={{ width: '0px', height: '0px' }}
         id="about"
@@ -26,10 +26,13 @@ const About = ({ toggleHeaderColor, scrollPosition }) => {
       <Grid
         ref={ref}
         sx={{
-          minHeight: '100vh',
-          overflow: 'hidden',
+          height: '100vh',
+          overflow: 'auto',
           position: 'relative',
           p: ['3em 0', '3em 0', '10em 0'],
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
         }}
         columns={[1, 1, 2]}
       >

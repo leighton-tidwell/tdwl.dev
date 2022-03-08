@@ -126,7 +126,6 @@ const Contact = ({ toggleHeaderColor, scrollPosition }) => {
           pt: '54px',
           position: 'relative',
           overflow: 'hidden',
-          scrollSnapAlign: 'start',
           p: ['3em 0', '3em 0', '10em 0'],
           scrollSnapAlign: 'center',
           '&:after': {
