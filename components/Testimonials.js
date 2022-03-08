@@ -94,8 +94,15 @@ const Testimonials = ({ toggleHeaderColor, scrollPosition }) => {
         >
           {testimonials.map(({ name, quote }) => (
             <Box key={name} sx={{ textAlign: 'center', p: '0 1em' }}>
-              <Paragraph sx={{ fontWeight: '300' }}>{quote}</Paragraph>
-              <Heading as="h2" sx={{ fontSize: '28px', fontWeight: '400' }}>
+              <Paragraph
+                sx={{ fontSize: ['18px', '24px', '30px'], fontWeight: '300' }}
+              >
+                {quote}
+              </Paragraph>
+              <Heading
+                as="h2"
+                sx={{ fontSize: ['22px', '26px', '28px'], fontWeight: '400' }}
+              >
                 - {name}
               </Heading>
             </Box>

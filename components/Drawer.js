@@ -65,16 +65,16 @@ const Drawer = ({ toggle }) => {
         top: 0,
         left: 0,
         zIndex: -1,
+        padding: '5em 0',
       }}
     >
       <Flex
         sx={{
-          height: 'calc(100vh - 54px)',
+          height: '100%',
           width: '100%',
           alignItems: 'flex-end',
           justifyContent: 'center',
           flexDirection: 'column',
-          padding: '5em 0',
         }}
       >
         {links.map(({ id, label }) => (
@@ -85,7 +85,7 @@ const Drawer = ({ toggle }) => {
               cursor: 'pointer',
               p: '1em',
               textTransform: 'uppercase',
-              fontSize: '48px',
+              fontSize: ['36px', '40px', '48px'],
               fontWeight: '300',
               color: 'black',
               '&:active': {

@@ -46,9 +46,9 @@ const AboutContent = ({ title = 'About', sx, children, invert }) => {
       <Heading
         as="h2"
         sx={{
-          fontSize: ['28px', '28px', '36px'],
+          fontSize: ['26px', '28px', '36px'],
           fontWeight: '700',
-          mb: '8px',
+          mb: ['4px', '4px', '8px'],
         }}
       >
         {title}
@@ -56,7 +56,7 @@ const AboutContent = ({ title = 'About', sx, children, invert }) => {
       <Paragraph
         sx={{
           fontWeight: '400',
-          fontSize: ['14px', '14px', '18px'],
+          fontSize: ['16px', '18px', '18px'],
         }}
       >
         {children}
