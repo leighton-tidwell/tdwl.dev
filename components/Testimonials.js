@@ -89,6 +89,7 @@ const Testimonials = ({ toggleHeaderColor, scrollPosition }) => {
           showDots={true}
           infinite={true}
           autoPlaySpeed={6000}
+          autoPlay={true}
           containerClass={classes['carousel-container']}
           removeArrowOnDeviceType={['tablet', 'mobile', 'desktop']}
         >
