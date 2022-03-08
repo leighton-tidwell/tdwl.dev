@@ -17,7 +17,7 @@ const About = ({ toggleHeaderColor, scrollPosition }) => {
   }, [scrollPosition, toggleHeaderColor])
 
   return (
-    <Box sx={{ scrollSnapAlign: 'center' }}>
+    <Box sx={{ scrollSnapAlign: 'start' }}>
       <Element
         style={{ width: '0px', height: '0px' }}
         id="about"

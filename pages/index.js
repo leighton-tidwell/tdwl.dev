@@ -44,7 +44,6 @@ const Home = () => {
             onScroll={handleScroll}
             sx={{
               scrollSnapType: 'y mandatory',
-              scrollBehavior: 'smooth',
               height: '100vh',
               overflow: 'auto',
             }}
