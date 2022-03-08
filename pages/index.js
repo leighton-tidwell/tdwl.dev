@@ -43,7 +43,7 @@ const Home = () => {
             id="container"
             onScroll={handleScroll}
             sx={{
-              scrollSnapType: 'y proximity',
+              scrollSnapType: 'y mandatory',
               scrollBehavior: 'smooth',
               height: '100vh',
               overflow: 'auto',

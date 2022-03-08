@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import { Box, Heading, Paragraph } from 'theme-ui'
 import { useInView } from 'react-intersection-observer'
 import { motion, useAnimation } from 'framer-motion'
@@ -22,9 +22,20 @@ const variants = {
   },
 }
 
-const PortfolioItem = ({ src, alt, sx }) => {
-  const { ref, inView } = useInView({ threshold: 0.9 })
+const PortfolioItem = ({ src, alt, sx, scrollPosition, toggleHeaderColor }) => {
+  const { ref: inViewRef, inView } = useInView({ threshold: 0.9 })
   const controls = useAnimation()
+  const ref = useRef()
+
+  useEffect(() => {
+    const { offsetTop } = ref.current
+    if (
+      scrollPosition >= offsetTop &&
+      scrollPosition <= offsetTop + ref.current.offsetHeight
+    ) {
+      toggleHeaderColor('white')
+    }
+  }, [scrollPosition, toggleHeaderColor])
 
   useEffect(() => {
     if (inView) {
@@ -36,15 +47,24 @@ const PortfolioItem = ({ src, alt, sx }) => {
     }
   }, [controls, inView])
 
+  const setRefs = useCallback(
+    node => {
+      ref.current = node
+      inViewRef(node)
+    },
+    [inViewRef, ref],
+  )
+
   return (
     <MotionBox
       class="portfolio-item"
       sx={{
         scrollSnapAlign: 'center',
+        scrollSnapStop: 'always',
         margin: '0 auto',
         aspectRatio: '16/9',
         height: '100vh',
-        width: '100vw',
+        width: '100%',
         span: {
           height: '100% !important',
           width: '100% !important',
@@ -60,7 +80,7 @@ const PortfolioItem = ({ src, alt, sx }) => {
       animate={controls}
       variants={variants}
       initial={{ filter: 'grayscale(100%)' }}
-      ref={ref}
+      ref={setRefs}
     >
       <Image src={src} alt={alt} layout="fill" />
     </MotionBox>

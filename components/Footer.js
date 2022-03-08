@@ -22,6 +22,7 @@ const Footer = () => {
         textAlign: 'center',
         fontSize: '18px',
         fontFamily: 'heading',
+        scrollSnapAlign: 'center',
       }}
     >
       <Flex

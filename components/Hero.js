@@ -44,6 +44,8 @@ const Hero = ({ toggleHeaderColor, scrollPosition }) => {
           color: 'white',
           zIndex: '1',
           overflow: 'hidden',
+          scrollSnapAlign: 'center',
+          scrollSnapStop: 'always',
         }}
       >
         <MotionGrid
