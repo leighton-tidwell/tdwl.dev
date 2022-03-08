@@ -29,7 +29,7 @@ const PortfolioItem = ({
   toggleHeaderColor,
   children,
 }) => {
-  const { ref: inViewRef, inView } = useInView({ threshold: 0.9 })
+  const { ref: inViewRef, inView } = useInView({ threshold: 0.5 })
   const controls = useAnimation()
   const ref = useRef()
 

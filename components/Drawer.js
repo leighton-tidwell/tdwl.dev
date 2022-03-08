@@ -74,6 +74,7 @@ const Drawer = ({ toggle }) => {
           alignItems: 'flex-end',
           justifyContent: 'center',
           flexDirection: 'column',
+          padding: '5em 0',
         }}
       >
         {links.map(({ id, label }) => (

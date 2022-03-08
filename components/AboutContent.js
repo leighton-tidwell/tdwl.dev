@@ -35,7 +35,7 @@ const AboutContent = ({ title = 'About', sx, children, invert }) => {
   return (
     <MotionBox
       sx={{
-        p: '1em',
+        p: ['0 1em', '0 1em', '1em'],
         ...sx,
       }}
       animate={controls}
@@ -43,13 +43,20 @@ const AboutContent = ({ title = 'About', sx, children, invert }) => {
       initial="hidden"
       ref={ref}
     >
-      <Heading as="h2" sx={{ fontSize: '36px', fontWeight: '700', mb: '8px' }}>
+      <Heading
+        as="h2"
+        sx={{
+          fontSize: ['28px', '28px', '36px'],
+          fontWeight: '700',
+          mb: '8px',
+        }}
+      >
         {title}
       </Heading>
       <Paragraph
         sx={{
           fontWeight: '400',
-          fontSize: '18px',
+          fontSize: ['14px', '14px', '18px'],
         }}
       >
         {children}

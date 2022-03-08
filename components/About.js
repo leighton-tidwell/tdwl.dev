@@ -33,7 +33,6 @@ const About = ({ toggleHeaderColor, scrollPosition }) => {
         ref={ref}
         sx={{
           height: '100vh',
-          overflow: 'auto',
           position: 'relative',
           p: ['3em 0', '3em 0', '10em 0'],
           '&::-webkit-scrollbar': {
