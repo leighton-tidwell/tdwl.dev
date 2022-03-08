@@ -16,13 +16,14 @@ const Drawer = ({ toggle }) => {
   })
 
   const handleLink = id => {
-    toggle()
     if (id)
       scroller.scrollTo(id, {
         containerId: 'container',
         duration: 500,
         smooth: true,
       })
+
+    toggle()
   }
 
   const links = [
