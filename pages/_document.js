@@ -16,7 +16,7 @@ export default function Document() {
           rel="stylesheet"
         />
       </Head>
-      <body>
+      <body style={{ background: '#000' }}>
         <InitializeColorMode />
         <Main />
         <NextScript />

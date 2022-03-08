@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react'
-import { Flex, Heading } from 'theme-ui'
+import { Flex, Heading, Box, Button } from 'theme-ui'
 import { Element } from 'react-scroll'
 import { PortfolioItem } from '.'
 
@@ -46,39 +46,160 @@ const Projects = ({ toggleHeaderColor, scrollPosition }) => {
       <PortfolioItem
         toggleHeaderColor={toggleHeaderColor}
         scrollPosition={scrollPosition}
-        src="/images/jbamho.png"
-        alt="JBA MHO"
-      />
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          background: 'linear-gradient(167.94deg, #051A2C 0%, #1D7DCF 100%)',
+        }}
+      >
+        <Flex
+          sx={{
+            flexDirection: 'column',
+            textAlign: 'center',
+            alignItems: 'center',
+            position: 'absolute',
+            top: '10vh',
+          }}
+        >
+          <Heading as="h1" sx={{ fontSize: '48px', color: 'white' }}>
+            JBA MHO
+          </Heading>
+          <Heading
+            as="h3"
+            sx={{
+              fontWeight: 'normal',
+              fontSize: '24px',
+              color: 'white',
+              fontFamily: 'heading',
+            }}
+          >
+            US Air Force
+          </Heading>
+          <Button variant="viewMore">View</Button>
+        </Flex>
+        <Box
+          sx={{
+            position: 'absolute',
+            height: ['60vh', '60vh', '70vh'],
+            width: ['80vw', '80vw', '95vw'],
+            bottom: '0',
+            backgroundImage: [
+              'url(/images/jbamhoiphone.png)',
+              'url(/images/jbamhoiphone.png)',
+              'url(/images/jbamhodesktop.png)',
+            ],
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'bottom center',
+          }}
+        />
+      </PortfolioItem>
       <PortfolioItem
         toggleHeaderColor={toggleHeaderColor}
         scrollPosition={scrollPosition}
-        src="/images/gsocmsl.png"
-        alt="JBA MHO"
-      />
+        sx={{
+          background: '#D84F24',
+        }}
+      >
+        <Flex
+          sx={{
+            flexDirection: 'column',
+            position: 'absolute',
+            top: '10vh',
+            left: '1em',
+          }}
+        >
+          <Heading
+            as="h1"
+            sx={{ fontSize: '48px', color: 'white', lineHeight: '.8em' }}
+          >
+            Sharons BBQ
+          </Heading>
+          <Heading
+            as="h3"
+            sx={{
+              fontWeight: 'normal',
+              fontSize: '24px',
+              color: 'white',
+              fontFamily: 'heading',
+            }}
+          >
+            Local small business
+          </Heading>
+          <Button variant="viewMore">View</Button>
+        </Flex>
+        <Box
+          sx={{
+            position: 'absolute',
+            height: ['65vh', '65vh', '100vh'],
+            width: '100vw',
+            pointerEvents: 'none',
+            bottom: '0',
+            right: '0',
+            backgroundImage: [
+              'url(/images/sharonsmac.png)',
+              'url(/images/sharonsmac.png)',
+              'url(/images/sharonsdesktop.png)',
+            ],
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: ['top center', 'top center', 'right center'],
+          }}
+        />
+      </PortfolioItem>
       <PortfolioItem
         toggleHeaderColor={toggleHeaderColor}
         scrollPosition={scrollPosition}
-        src="/images/sharons.png"
-        alt="JBA MHO"
-      />
-      <PortfolioItem
-        toggleHeaderColor={toggleHeaderColor}
-        scrollPosition={scrollPosition}
-        src="/images/sharons.png"
-        alt="JBA MHO"
-      />
-      <PortfolioItem
-        toggleHeaderColor={toggleHeaderColor}
-        scrollPosition={scrollPosition}
-        src="/images/sharons.png"
-        alt="JBA MHO"
-      />
-      <PortfolioItem
-        toggleHeaderColor={toggleHeaderColor}
-        scrollPosition={scrollPosition}
-        src="/images/sharons.png"
-        alt="JBA MHO"
-      />
+        sx={{
+          background: 'linear-gradient(167.94deg, #26262A 0%, #000000 100%)',
+        }}
+      >
+        <Flex
+          sx={{
+            flexDirection: 'column',
+            position: 'absolute',
+            top: '10vh',
+            left: '1em',
+          }}
+        >
+          <Heading
+            as="h1"
+            sx={{ fontSize: '48px', color: 'white', lineHeight: '.8em' }}
+          >
+            GSOC MSL
+          </Heading>
+          <Heading
+            as="h3"
+            sx={{
+              fontWeight: 'normal',
+              fontSize: '24px',
+              color: 'white',
+              fontFamily: 'heading',
+            }}
+          >
+            US Air Force
+          </Heading>
+          <Button variant="viewMore">View</Button>
+        </Flex>
+        <Box
+          sx={{
+            position: 'absolute',
+            height: ['65vh', '65vh', '90vh'],
+            width: 'calc(100vw - 1em)',
+            pointerEvents: 'none',
+            bottom: '0',
+            right: '0',
+            backgroundImage: [
+              'url(/images/gsocmslmobile.png)',
+              'url(/images/gsocmslmobile.png)',
+              'url(/images/gsocmsldesktop.png)',
+            ],
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: ['top center', 'top center', 'right center'],
+          }}
+        />
+      </PortfolioItem>
     </>
   )
 }

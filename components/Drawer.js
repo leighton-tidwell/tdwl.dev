@@ -40,6 +40,10 @@ const Drawer = ({ toggle }) => {
       label: 'Projects',
     },
     {
+      id: 'testimonials',
+      label: 'Testimonials',
+    },
+    {
       id: 'contact',
       label: 'Contact Us',
     },

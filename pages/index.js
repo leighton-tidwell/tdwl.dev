@@ -7,6 +7,7 @@ import {
   Hero,
   About,
   Projects,
+  Testimonials,
   Contact,
   Footer,
 } from '../components/'
@@ -58,6 +59,10 @@ const Home = () => {
               toggleHeaderColor={setHeaderColor}
             />
             <Projects
+              scrollPosition={scrollPosition}
+              toggleHeaderColor={setHeaderColor}
+            />
+            <Testimonials
               scrollPosition={scrollPosition}
               toggleHeaderColor={setHeaderColor}
             />
