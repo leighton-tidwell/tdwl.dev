@@ -47,7 +47,6 @@ const Header = ({ color, toggleColor }) => {
           setHeaderPrevColor(color)
           if (showNav === false) {
             toggleColor('black')
-            console.log('toggling black')
           } else {
             console.log('other')
             toggleColor(headerPrevColor)

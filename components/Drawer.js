@@ -1,4 +1,3 @@
-import { useLayoutEffect, useEffect } from 'react'
 import { Flex, Box, Text } from 'theme-ui'
 import { scroller } from 'react-scroll'
 import { motion } from 'framer-motion'
@@ -6,24 +5,15 @@ import { motion } from 'framer-motion'
 const MotionBox = motion(Box)
 
 const Drawer = ({ toggle }) => {
-  const useIsomorphicLayoutEffect =
-    typeof window !== 'undefined' ? useLayoutEffect : useEffect
-
-  useIsomorphicLayoutEffect(() => {
-    document.body.style.overflow = 'hidden'
-
-    return () => (document.body.style.overflow = 'auto')
-  })
-
   const handleLink = id => {
     if (id)
       scroller.scrollTo(id, {
         containerId: 'container',
-        duration: 500,
+        duration: 1000,
         smooth: true,
       })
 
-    setTimeout(() => toggle(), 1000)
+    toggle()
   }
 
   const links = [
