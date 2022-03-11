@@ -19,6 +19,7 @@ export default function Document() {
       <body style={{ background: '#000' }}>
         <InitializeColorMode />
         <Main />
+        <div id="portfolio-overlay" />
         <NextScript />
       </body>
     </Html>
