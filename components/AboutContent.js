@@ -23,7 +23,7 @@ const variants = {
 }
 
 const AboutContent = ({ title = 'About', sx, children, invert }) => {
-  const { ref, inView } = useInView({ threshold: 0.5 })
+  const { ref, inView } = useInView({ threshold: 0.1 })
   const controls = useAnimation()
 
   useEffect(() => {
