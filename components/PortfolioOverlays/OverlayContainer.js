@@ -1,7 +1,8 @@
 import { useLayoutEffect, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { Box, Button } from 'theme-ui'
+import { Box } from 'theme-ui'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useRouter } from 'next/router'
 
 const MotionBox = motion(Box)
 
@@ -27,8 +28,9 @@ const fullscreenIconVariants = {
   },
 }
 
-const OverlayContainer = ({ children, toggleShow, headerImage }) => {
+const OverlayContainer = ({ children, toggleShow, headerImage, path }) => {
   const [headerExpanded, setHeaderExpanded] = useState(false)
+  const router = useRouter()
 
   const useIsomorphicLayoutEffect =
     typeof window !== 'undefined' ? useLayoutEffect : useEffect
@@ -37,6 +39,14 @@ const OverlayContainer = ({ children, toggleShow, headerImage }) => {
     document.getElementById('container').style.overflow = 'hidden'
 
     return () => (document.getElementById('container').style.overflow = 'auto')
+  }, [])
+
+  useEffect(() => {
+    router.push(`#/projects/${path}`, undefined, { shallow: true })
+    router.beforePopState(() => {
+      toggleShow(false)
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return createPortal(
@@ -69,7 +79,7 @@ const OverlayContainer = ({ children, toggleShow, headerImage }) => {
           padding: '1em',
           backgroundImage: headerImage,
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: 'top center',
           position: 'relative',
         }}
       >

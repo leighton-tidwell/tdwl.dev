@@ -2,38 +2,11 @@ import { useState, useEffect } from 'react'
 import { Flex, Heading, Button, Box, Paragraph } from 'theme-ui'
 import { motion, AnimatePresence } from 'framer-motion'
 import { OverlayContainer } from '.'
-import classes from './JBAMHO.module.css'
-import Carousel from 'react-multi-carousel'
-import 'react-multi-carousel/lib/styles.css'
 
 const MotionFlex = motion(Flex)
 
 const JBAMHO = ({ scrollPosition }) => {
   const [showOverlay, setShowOverlay] = useState(false)
-
-  const images = [
-    {
-      url: 'url(/images/jbamho.png)',
-    },
-    {
-      url: 'url(/images/jbamho-2.png)',
-    },
-  ]
-
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 1,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 1,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  }
 
   useEffect(() => {
     setShowOverlay(false)
@@ -46,6 +19,7 @@ const JBAMHO = ({ scrollPosition }) => {
           <OverlayContainer
             toggleShow={setShowOverlay}
             headerImage="url(/images/jbamho.png)"
+            path="jba-mho"
           >
             <Box
               sx={{
@@ -133,29 +107,15 @@ const JBAMHO = ({ scrollPosition }) => {
                 efficiently than their current system.
               </Paragraph>
             </Box>
-            <Carousel
-              ssr={true}
-              responsive={responsive}
-              showDots={true}
-              infinite={true}
-              autoPlaySpeed={6000}
-              autoPlay={true}
-              containerClass={classes['carousel-container']}
-              removeArrowOnDeviceType={['tablet', 'mobile', 'desktop']}
-            >
-              {images.map(({ url }, i) => (
-                <Box
-                  key={i}
-                  sx={{
-                    height: '100vh',
-                    width: '100%',
-                    backgroundImage: url,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'top',
-                  }}
-                />
-              ))}
-            </Carousel>
+            <Box
+              sx={{
+                height: '100vh',
+                width: '100vw',
+                backgroundImage: 'url(/images/jbamhomanagement.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'top',
+              }}
+            />
           </OverlayContainer>
         )}
       </AnimatePresence>
