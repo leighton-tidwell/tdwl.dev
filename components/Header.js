@@ -35,7 +35,7 @@ const Header = ({ color, toggleColor }) => {
       }}
     >
       <Box sx={{ cursor: 'pointer' }}>
-        <Link onClick={handleToTop}>
+        <Link onClick={handleToTop} passHref>
           <Logo color={color} />
         </Link>
       </Box>
